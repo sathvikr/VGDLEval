@@ -4,7 +4,7 @@ set -e
 BASE_URL="http://localhost:8085"
 MODEL="openai:gpt-5.2"
 SUMMARY_INTERVAL=60
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")"/.." && pwd)"
 
 # Same 9 games shown in all_games_plot.png
 GAMES=(

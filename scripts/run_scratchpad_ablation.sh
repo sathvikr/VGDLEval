@@ -3,7 +3,7 @@
 # Same 9 games as the screenshot-vs-ascii ablation, same model and max_actions.
 
 set -e
-cd "$(dirname "$0")"
+cd "$(dirname "$0")"/.."
 
 MODEL="openai:gpt-5.2"
 BASE_URL="http://localhost:8085/games"

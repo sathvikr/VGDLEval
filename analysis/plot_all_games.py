@@ -8,7 +8,7 @@ from plot_scores import load_step_data, has_level_data, build_levels_won_series,
 
 
 def main():
-    map_file = os.path.join("results", "game_results_map.txt")
+    map_file = os.path.join("../results", "game_results_map.txt")
     games = []
     with open(map_file) as f:
         for line in f:
@@ -55,7 +55,7 @@ def main():
         axes_flat[j].set_visible(False)
 
     plt.tight_layout(rect=[0, 0, 1, 0.95])
-    out_path = os.path.join("results", "all_games_plot.png")
+    out_path = os.path.join("../results", "all_games_plot.png")
     plt.savefig(out_path, dpi=150)
     plt.close()
     print(f"Plot saved to {out_path}")

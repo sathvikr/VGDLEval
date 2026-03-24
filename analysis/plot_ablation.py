@@ -94,27 +94,27 @@ def get_total_levels(results_dir: str, default: int = 5) -> int:
 
 # Baseline screenshot sessions (best run per game from the original data)
 SCREENSHOT_SESSIONS = {
-    "gvgai_zelda":        "results/20260312_125209",
-    "gvgai_aliens":       "results/20260312_025404",
-    "gvgai_butterflies":  "results/20260312_125946",
-    "gvgai_chase":        "results/20260312_030613",
-    "gvgai_boulderdash":  "results/20260312_031233",
-    "gvgai_bait":         "results/20260312_124529",
-    "gvgai_frogs":        "results/20260312_130605",
-    "gvgai_surprise":     "results/20260312_022310",
-    "gvgai_plaqueattack": "results/20260312_132120",
+    "gvgai_zelda":        "../results/20260312_125209",
+    "gvgai_aliens":       "../results/20260312_025404",
+    "gvgai_butterflies":  "../results/20260312_125946",
+    "gvgai_chase":        "../results/20260312_030613",
+    "gvgai_boulderdash":  "../results/20260312_031233",
+    "gvgai_bait":         "../results/20260312_124529",
+    "gvgai_frogs":        "../results/20260312_130605",
+    "gvgai_surprise":     "../results/20260312_022310",
+    "gvgai_plaqueattack": "../results/20260312_132120",
 }
 
 ASCII_SESSIONS = {
-    "gvgai_zelda":        "results/20260324_163850",
-    "gvgai_aliens":       "results/20260324_164448",
-    "gvgai_butterflies":  "results/20260324_164929",
-    "gvgai_chase":        "results/20260324_165433",
-    "gvgai_boulderdash":  "results/20260324_165934",
-    "gvgai_bait":         "results/20260324_170728",
-    "gvgai_frogs":        "results/20260324_171428",
-    "gvgai_surprise":     "results/20260324_172721",
-    "gvgai_plaqueattack": "results/20260324_172904",
+    "gvgai_zelda":        "../results/20260324_163850",
+    "gvgai_aliens":       "../results/20260324_164448",
+    "gvgai_butterflies":  "../results/20260324_164929",
+    "gvgai_chase":        "../results/20260324_165433",
+    "gvgai_boulderdash":  "../results/20260324_165934",
+    "gvgai_bait":         "../results/20260324_170728",
+    "gvgai_frogs":        "../results/20260324_171428",
+    "gvgai_surprise":     "../results/20260324_172721",
+    "gvgai_plaqueattack": "../results/20260324_172904",
 }
 
 GAME_ORDER = [
@@ -200,14 +200,14 @@ def main():
     plot_single_mode(
         ASCII_SESSIONS,
         "Game steps vs. score (gpt-5.2, ASCII) (2026-03-24)",
-        "results/ascii_all_games_plot.png",
+        "../results/ascii_all_games_plot.png",
     )
 
     # Comparison overlay
     plot_comparison(
         SCREENSHOT_SESSIONS,
         ASCII_SESSIONS,
-        "results/ablation_comparison_plot.png",
+        "../results/ablation_comparison_plot.png",
     )
 
 

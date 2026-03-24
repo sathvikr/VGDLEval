@@ -5,26 +5,16 @@ BASE_URL="http://localhost:8085"
 MODEL="openai:gpt-5.2"
 MAX_ACTIONS=400
 SUMMARY_INTERVAL=60
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")"/.." && pwd)"
 
 GAMES=(
-    gvgai_bees_and_birds
-    gvgai_boulderdash
+    gvgai_zelda
+    gvgai_aliens
     gvgai_butterflies
     gvgai_chase
-    gvgai_closing_gates
-    gvgai_corridor
+    gvgai_boulderdash
+    gvgai_bait
     gvgai_frogs
-    gvgai_jaws
-    gvgai_lemmings
-    gvgai_missilecommand
-    gvgai_myAliens
-    expt_antagonist
-    expt_ee
-    expt_helper
-    expt_preconditions
-    expt_push_boulders
-    expt_relational
 )
 
 cd "$SCRIPT_DIR"
@@ -42,19 +32,18 @@ for GAME in "${GAMES[@]}"; do
         --summary_interval "$SUMMARY_INTERVAL" \
     2>&1 | tee "results/last_${GAME}.log"
 
-    # Find the most recent results directory
-    RESULTS_DIR=$(ls -td results/*/  | head -1)
+    RESULTS_DIR=$(ls -td results/*/ | head -1)
 
     echo "Generating plot for $GAME -> $RESULTS_DIR"
     python plot_scores.py "$RESULTS_DIR" \
         --title "$GAME (gpt-5.2)" \
-        --out "${RESULTS_DIR}score_plot.png"
+        --out "${RESULTS_DIR}score_plot.png" \
+        --no-gif
 
-    # Update mapping
     echo "$GAME -> $RESULTS_DIR" >> results/game_results_map.txt
 
     echo "Done: $GAME"
     echo ""
 done
 
-echo "All failed games complete."
+echo "All 7 games complete."
