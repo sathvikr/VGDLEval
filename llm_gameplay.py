@@ -53,21 +53,21 @@ def actions_to_names(actions: List[Optional[int]]) -> str:
     return ", ".join(names)
 
 
-def format_frame_description(entry: Dict[str, Any]) -> str:
+def format_frame_description(entry: Dict[str, Any], include_excerpt: bool = True) -> str:
     """Produce a compact textual tag for a stored frame."""
     episode = entry.get("episode")
     step = entry.get("step")
     action_index = entry.get("action_index")
     action_name = entry.get("action_name", "UNKNOWN")
     score = entry.get("score", "N/A")
+    base = f"Episode {episode}, Step {step}, Action #{action_index} ({action_name}) | Score: {score}"
+    if not include_excerpt:
+        return base
     assistant_excerpt = entry.get("assistant_excerpt", "")
     assistant_excerpt = assistant_excerpt.replace("\n", " ").strip()
     if len(assistant_excerpt) > 160:
-        assistant_excerpt = assistant_excerpt + "..."
-    return (
-        f"Episode {episode}, Step {step}, Action #{action_index} ({action_name}) | "
-        f"Score: {score} | Assistant response: {assistant_excerpt}"
-    )
+        assistant_excerpt = assistant_excerpt[:160] + "..."
+    return f"{base} | Assistant response: {assistant_excerpt}"
 
 
 def append_frame_visual(sections: List[Dict[str, Any]], label: str, frame_ref: Optional[Dict[str, Optional[str]]]) -> None:
@@ -355,7 +355,7 @@ def main():
                 else:
                     if frame_history:
                         for frame_entry in frame_history:
-                            label = format_frame_description(frame_entry)
+                            label = format_frame_description(frame_entry, include_excerpt=not use_scratchpad)
                             append_ascii_state(visual_sections, label, frame_entry.get("ascii"))
                     if current_ascii_state:
                         append_ascii_state(
@@ -375,7 +375,7 @@ def main():
                 else:
                     if frame_history:
                         for frame_entry in frame_history:
-                            label = format_frame_description(frame_entry)
+                            label = format_frame_description(frame_entry, include_excerpt=not use_scratchpad)
                             append_frame_visual(visual_sections, label, frame_entry["frame"])
                     if screenshot_frame:
                         append_frame_visual(
