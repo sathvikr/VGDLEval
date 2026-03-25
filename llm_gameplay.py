@@ -203,7 +203,9 @@ def main():
 
     # Scratchpad: accumulates reasoning from past steps
     scratchpad_buffer: List[str] = []
-    
+
+    gameplay_log: List[Dict[str, Any]] = []
+
     # Init Interface
     interface = get_interface(model_provider, model_name)
     
@@ -239,7 +241,6 @@ def main():
         click_start_llm(driver)
         
         total_actions_count = 0
-        gameplay_log = []
         episode_count = 1
         step_count = 0
         
